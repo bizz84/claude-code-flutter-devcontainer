@@ -28,7 +28,7 @@ USER root
 
 If you run `flutter doctor`, you should see something like this:
 
-```zsh
+```
 Doctor summary (to see all details, run flutter doctor -v):
 [✓] Flutter (Channel stable, 3.38.3, on Debian GNU/Linux 12 (bookworm) 6.10.14-linuxkit, locale en_US.UTF-8)
 [✗] Android toolchain - develop for Android devices
@@ -57,13 +57,13 @@ Doctor summary (to see all details, run flutter doctor -v):
 [✓] Network resources
 ```
 
-This means that with this setup, you can run `flutter` sub-commands such as `analyze`, `test`, `pub` directly from the terminal or by Claude Code.
+This means that you can run `flutter` sub-commands such as `analyze`, `test`, `pub` directly from the terminal or by Claude Code.
 
-But you **can't** use `flutter run` to run the app on any platform, since the Dockerfile doesn't install any platform-specific tools like Xcode or Android Studio.
+But you **can't** use `flutter run` to run the app on any platform, since the Dockerfile doesn't install any platform-specific tools like Chrome, Android Studio, or Xcode.
 
 ## Useful aliases
 
-To make development faster, I have defined a bunch of useful aliases inside a file called `.zshrc_dev`:
+To make development faster, I have included these useful aliases in a file called `.zshrc_dev`:
 
 ```zsh
 # Aliases for Flutter commands
@@ -91,5 +91,12 @@ cp .zshrc_dev ~/.zshrc_dev
 ```
 
 Then, rebuild and reopen the container, and the file will be loaded automatically.
+
+As a result, you'll be able to run the aliases directly:
+
+```zsh
+fpg # same as flutter pub get
+c-dsp # same as claude --dangerously-skip-permissions
+```
 
 ### [LICENSE: MIT](LICENSE.md)
