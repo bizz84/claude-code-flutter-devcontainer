@@ -25,14 +25,24 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   jq \
   nano \
   vim \
+  locales \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Generate locale
+RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US:en
+ENV LC_ALL=en_US.UTF-8
+
 # Install Flutter (system-wide)
-RUN git clone https://github.com/flutter/flutter.git -b stable /opt/flutter
+RUN git clone https://github.com/flutter/flutter.git -b stable /opt/flutter && \
+    chown -R node:node /opt/flutter
 ENV PATH="/opt/flutter/bin:$PATH"
 
-# Pre-download Flutter dependencies
+# Pre-download Flutter dependencies (as node user since they own /opt/flutter)
+USER node
 RUN flutter precache
+USER root
 
 # Ensure default node user has access to /usr/local/share
 RUN mkdir -p /usr/local/share/npm-global && \
