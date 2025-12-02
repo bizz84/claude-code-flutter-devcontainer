@@ -1,6 +1,8 @@
+# Claude Code + Flutter Dev Container
+
 Dev container for running Claude code safely with the `--dangerously-skip-permissions` flag.
 
-This is essentially identical to the official devcontainer in the [official Claude Code repo](https://github.com/anthropics/claude-code/tree/main/.devcontainer), but with some additions for Flutter app development.
+This setup was created directly from the devcontainer in the [official Claude Code repo](https://github.com/anthropics/claude-code/tree/main/.devcontainer), but with some additions for Flutter app development.
 
 ## Flutter container setup
 
