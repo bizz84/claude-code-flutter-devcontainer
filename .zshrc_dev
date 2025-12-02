@@ -1,0 +1,17 @@
+# Aliases for Flutter commands
+alias fclean="flutter clean"
+alias fpg="flutter pub get"
+alias fpu="flutter pub upgrade"
+
+alias brb="dart run build_runner build -d"
+alias brw="dart run build_runner watch -d"
+
+alias fpgbrb="fpg && brb"
+alias fpgbrw="fpg && brw"
+
+# Aliases for Claude Code
+alias c-dsp='claude --dangerously-skip-permissions'
+alias c-mcp-flutter='claude --mcp-config ~/.config/claude/.mcp.json.flutter'
+
+# Custom prompt or other configurations
+echo "🚀 Flutter Dev Environment Ready!"
