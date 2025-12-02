@@ -4,9 +4,16 @@ Dev container for running Claude code safely with the `--dangerously-skip-permis
 
 This setup was created directly from the devcontainer in the [official Claude Code repo](https://github.com/anthropics/claude-code/tree/main/.devcontainer), but with some additions for Flutter app development.
 
+## Usage
+
+- Install the **Cursor Dev Containers** or [**Visual Studio Code Dev Containers**](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension (depending on your IDE).
+- Copy the `.devcontainer` folder to your Flutter project.
+- Copy the `.zshrc_dev` file to your home directory (`cp .zshrc_dev ~/.zshrc_dev`)
+- Hit **CMD+SHIFT+P** > **Dev Containers: Rebuild and Reopen in Container** from Cursor or VSCode
+
 ## Flutter container setup
 
-The Dockerfile has been updated to install Flutter when building the container:
+The [Dockerfile](.devcontainer/Dockerfile) has been updated to install Flutter when building the container:
 
 ```dockerfile
 # Generate locale
@@ -25,6 +32,15 @@ USER node
 RUN flutter precache
 USER root
 ```
+
+The [firewall rules](.devcontainer/init-firewall.sh) have been updated to allow access to these Flutter-specific domains:
+
+- `pub.dev`
+- `storage.googleapis.com`
+- `maven.google.com`
+- `cocoapods.org`
+- `dl.google.com`
+- `chrome-infra-packages.appspot.com`
 
 ### Running Flutter commands
 
