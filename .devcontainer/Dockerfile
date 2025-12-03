@@ -98,6 +98,9 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
 # Install Claude
 RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}
 
+# Install Cloc
+RUN npm install -g cloc
+
 # Add sourcing logic to ~/.zshrc (must be after zsh-in-docker which overwrites .zshrc)
 RUN echo "" >> /home/node/.zshrc && \
     echo "# Source custom development environment" >> /home/node/.zshrc && \
