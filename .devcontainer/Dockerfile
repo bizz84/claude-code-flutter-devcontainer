@@ -34,13 +34,16 @@ ENV LANG=en_US.UTF-8
 ENV LANGUAGE=en_US:en
 ENV LC_ALL=en_US.UTF-8
 
-# Install Flutter (system-wide)
+# Install Flutter (system-wide) and set ownership for node user
 RUN git clone https://github.com/flutter/flutter.git -b stable /opt/flutter && \
-    chown -R node:node /opt/flutter
+  chown -R node:node /opt/flutter
 ENV PATH="/opt/flutter/bin:$PATH"
 
-# Pre-download Flutter dependencies (as node user since they own /opt/flutter)
+# Configure git safe.directory for Flutter (as node user)
 USER node
+RUN git config --global --add safe.directory /opt/flutter
+
+# Pre-download Flutter dependencies (as node user who owns the directory)
 RUN flutter precache
 USER root
 
