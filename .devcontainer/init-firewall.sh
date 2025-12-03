@@ -73,6 +73,7 @@ for domain in \
     "marketplace.visualstudio.com" \
     "vscode.blob.core.windows.net" \
     "update.code.visualstudio.com" \
+    "mcp.context7.com" \
     "pub.dev" \
     "storage.googleapis.com" \
     "maven.google.com" \
