@@ -11,6 +11,15 @@ This setup was created directly from the devcontainer in the [official Claude Co
 - Copy the `.zshrc_dev` file to your home directory (`cp .zshrc_dev ~/.zshrc_dev`)
 - Hit **CMD+SHIFT+P** > **Dev Containers: Rebuild and Reopen in Container** from Cursor or VSCode
 
+Note: to make commits from the devcontainer, you'll need to run this manually:
+
+```zsh
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
+
+> Run `git config --global --list` from your host machine to see the current configuration.
+
 ## Flutter container setup
 
 The [Dockerfile](.devcontainer/Dockerfile) has been updated to install Flutter when building the container:
