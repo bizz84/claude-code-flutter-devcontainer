@@ -4,7 +4,7 @@ Dev container for running Claude code safely with the `--dangerously-skip-permis
 
 This setup was created directly from the devcontainer in the [official Claude Code repo](https://github.com/anthropics/claude-code/tree/main/.devcontainer), but with some additions for Flutter app development.
 
-## Usage
+## Quick Start
 
 - Install the **Cursor Dev Containers** or [**Visual Studio Code Dev Containers**](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension (depending on your IDE).
 - Copy the `.devcontainer` folder to your Flutter project.
@@ -20,6 +20,12 @@ git config --global user.email "your.email@example.com"
 
 > Run `git config --global --list` from your host machine to see the current configuration.
 
+## Full tutorial
+
+Read this article for all the details:
+
+- [How to Safely Run AI Agents Like Cursor and Claude Code Inside a DevContainer](https://codewithandrea.com/articles/run-ai-agents-inside-devcontainer/)
+
 ## Flutter container setup
 
 The [Dockerfile](.devcontainer/Dockerfile) has been updated to install Flutter when building the container:
@@ -31,13 +37,16 @@ ENV LANG=en_US.UTF-8
 ENV LANGUAGE=en_US:en
 ENV LC_ALL=en_US.UTF-8
 
-# Install Flutter (system-wide)
+# Install Flutter (system-wide) and set ownership for node user
 RUN git clone https://github.com/flutter/flutter.git -b stable /opt/flutter && \
-    chown -R node:node /opt/flutter
+  chown -R node:node /opt/flutter
 ENV PATH="/opt/flutter/bin:$PATH"
 
-# Pre-download Flutter dependencies (as node user since they own /opt/flutter)
+# Configure git safe.directory for Flutter (as node user)
 USER node
+RUN git config --global --add safe.directory /opt/flutter
+
+# Pre-download Flutter dependencies (as node user who owns the directory)
 RUN flutter precache
 USER root
 ```
