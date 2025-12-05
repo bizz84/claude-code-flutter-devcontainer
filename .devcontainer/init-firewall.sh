@@ -74,6 +74,7 @@ for domain in \
     "vscode.blob.core.windows.net" \
     "update.code.visualstudio.com" \
     "mcp.context7.com" \
+    "api.openai.com" \
     "pub.dev" \
     "storage.googleapis.com" \
     "maven.google.com" \
